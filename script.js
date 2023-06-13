@@ -12,24 +12,24 @@ function search(str) {//this function is first to check the characters entered i
 	return searchResults;
 }//console.log(search('Lo'));
 
+function clearSuggestions() {//removes suggestions from the DOM
+	suggestions.innerHTML = '';
+}
+
 function searchHandler(e) {//this event HANDLER is necessary to make the search function work
 	const inputVal = e.target.value;//need to define the input val for the str entered above
 	const results = search(inputVal);//run the search function on the input values or str argument and store these in the results variable!
-
-
+	 
 	if (inputVal === '') {
 		// Clear the suggestions if the input value is empty
 		clearSuggestions();
 	  } else {
 		showSuggestions(results, inputVal);
 	  }
-	  function clearSuggestions() {//removes suggestions from the DOM
-		suggestions.innerHTML = '';
-	 
-	  }
+	}
 	
 // showSuggestions(results, inputVal);//THIS IS WHERE IT GOT TRICKY...  This is necessary here in order to update the suggestions list immediately after the search results are obtained- as they type in the input field, but after I realized I want the 
-}
+
 
 function showSuggestions(results, inputVal) {//this function is necesary to create the drop down list of suggested fruit & manipulate.  It takes in two parameters (results- array of filtered items based on user input) & (inputVal- stores the current value of the input field string or character entered by the user)
 	suggestions.innerHTML = '';//avoid duplicate suggestions and allows all items to be cleared but no suggestion if applicable
@@ -56,6 +56,6 @@ function useSuggestion(e) {
 	suggestions.innerHTML = '';//clear the drop down once an item is clicked
 }
 
-input.addEventListener('keyup', searchHandler);//why are these at the bottom again???
-suggestions.addEventListener('click', useSuggestion);//function that uses the event listenr
+input.addEventListener('keyup', searchHandler);//want to make sure the functions are defined first
+suggestions.addEventListener('click', useSuggestion);
 
